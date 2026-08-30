@@ -19,8 +19,16 @@ class SouqArtiApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF0B132B),
           centerTitle: true,
+          elevation: 0,
         ),
       ),
+      // إجبار التطبيق على دعم اتجاه اللغة العربية بشكل صحيح (RTL)
+      builder: (context, child) {
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: child!,
+        );
+      },
       home: const HomeScreen(),
     );
   }
@@ -35,11 +43,20 @@ class HomeScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('سوق آرتي', style: TextStyle(color: Color(0xFFFFD700), fontWeight: FontWeight.bold)),
+          title: const Text(
+            'سوق آرتي',
+            style: TextStyle(
+              color: Color(0xFFFFD700),
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
+          ),
           bottom: const TabBar(
             indicatorColor: Color(0xFFFFD700),
+            indicatorWeight: 3,
             labelColor: Color(0xFFFFD700),
             unselectedLabelColor: Colors.white60,
+            labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             tabs: [
               Tab(icon: Icon(Icons.store), text: 'لوحة التاجر'),
               Tab(icon: Icon(Icons.phonelink_setup), text: 'طلب استبدال'),
@@ -106,16 +123,19 @@ class _MerchantUploadScreenState extends State<MerchantUploadScreen> {
             height: 180,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: const Color(0xFF1C2541),
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: const Color(0xFFFFD700), width: 2),
+              border: Border.all(color: const Color(0xFFFFD700), width: 1.5),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Icon(Icons.camera, size: 50, color: Color(0xFFFFD700)),
+                Icon(Icons.camera_alt, size: 50, color: Color(0xFFFFD700)),
                 SizedBox(height: 10),
-                Text('كاميرا التاجر المباشرة لالتقاط صورة الهاتف', style: TextStyle(color: Colors.white70, fontSize: 14)),
+                Text(
+                  'كاميرا التاجر المباشرة لالتقاط صورة الهاتف',
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
               ],
             ),
           ),
@@ -165,7 +185,10 @@ class _MerchantUploadScreenState extends State<MerchantUploadScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('🌟 تفعيل الضمان الذهبي', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                const Text(
+                  '🌟 تفعيل الضمان الذهبي',
+                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                ),
                 Switch(
                   value: _goldenGuarantee,
                   activeColor: const Color(0xFFFFD700),
@@ -188,7 +211,10 @@ class _MerchantUploadScreenState extends State<MerchantUploadScreen> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               ),
               onPressed: _publishProduct,
-              child: const Text('تحميل ونشر المنتج فوراً', style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'تحميل ونشر المنتج فوراً',
+                style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],
@@ -265,7 +291,10 @@ class _ReplacementRequestScreenState extends State<ReplacementRequestScreen> {
               children: const [
                 Icon(Icons.camera_alt, size: 50, color: Color(0xFF00FFFF)),
                 SizedBox(height: 10),
-                Text('التقط صورة جهازي الحالي بالكاميرا', style: TextStyle(color: Colors.white, fontSize: 16)),
+                Text(
+                  'التقط صورة جهازي الحالي بالكاميرا',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ],
             ),
           ),
@@ -349,7 +378,10 @@ class _ReplacementRequestScreenState extends State<ReplacementRequestScreen> {
                 children: const [
                   Icon(Icons.send, color: Colors.white),
                   SizedBox(width: 8),
-                  Text('إرسال طلب الاستبدال', style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold)),
+                  Text(
+                    'إرسال طلب الاستبدال',
+                    style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
